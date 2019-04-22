@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<body>
+
+	<div class="container text-center"> 
+		<h2>Timer</h2>
+		<div class="row justify-content-center">  
+			<div class="col-6"> 
+				<span class="timer-text" id="countdown">02:30</span>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-6">
+				<input type="button" value="START" id="START" />
+				<input type="button" value="STOP" id="STOP" />
+			</div>
+		</div>
+	</div>
+
+	<!-- Timer -->
+	<script type="text/javascript">
+		//buttons
+		var reset = document.getElementById('STOP');
+		reset.onclick = function() {
+		    minutes = 2;
+		    seconds = 29;
+		    clearInterval(interval);
+		    interval = null;
+		}
+		var start = document.getElementById('START');
+		start.onclick = function() {
+		    if (!interval) {
+		        countdown('countdown');
+		    }
+		}
+
+		//timer function
+		var interval;
+	    var minutes = 2;
+	    var seconds = 29;
+	    function countdown(element) {
+	        interval = setInterval(function() {
+	            var el = document.getElementById(element);
+	            if(seconds == 0) {
+	                if(minutes == 0) {
+	                	el.innerHTML = "00:00";
+	                    clearInterval(interval);
+	                    return;
+	                } else {
+	                    minutes--;
+	                    seconds = 59;
+	                }
+	            }
+
+	            if(minutes > 0) {
+	                var minute_text = minutes;
+	            } else {
+	                var minute_text = '0';
+	            }
+	            if(seconds < 10) {
+	                var second_text = "0" + seconds;
+	            } else {
+	                var second_text = seconds;
+	            }
+
+	            el.innerHTML = "0" + minute_text + ':' + second_text;
+	            seconds--;
+	        }, 1000);
+	    }
+	</script>
+</body>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <header class="masthead d-flex">
+    <div class="container text-center my-auto">
+      <h1 class="mb-1">miFLLteam</h1>
+      <h3 class="mb-5">
+        <em>A tool for coaches to manage Michigan FLL teams</em>
+      </h3>
+      {% if current_user.is_authenticated %}
+        <div class="container text-center">    
+          <div class="row">
+            <div class="col-sm-4">
+              <a href="/tasks"><img src="/static/tasks.jpg" class="link-img" style="width:100%">
+              <a href="/tasks" class="caption">Tasks</a>
+            </div>
+            <div class="col-sm-4"> 
+              <a href="/notebook"><img src="/static/notebook.jpg" class="link-img" style="width:100%">
+              <a href="/notebook" class="caption">Notebook</a>    
+            </div>
+          <div class="col-sm-4"> 
+              <a href="/tools"><img src="/static/tools.jpg" class="link-img" style="width:100%">
+              <a href="/tools" class="caption">Tools</a>    
+            </div>
+          </div>
+        </div>
+	 {% else %}
+	  <div class="btn-group-lg btn-group-vertical">
+      <a type="button" class="btn btn-secondary btn-sm m-1" href="/login">Login</a>
+      <a type="button" class="btn btn-secondary btn-sm m-1" href="/register">Register</a>
+  	 </div>
+	 {% endif %}
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+	<!-- Menu of tool pages -->
+	<div class="container text-center">    
+	  <h3>Tools</h3><br>
+	  <div class="row">
+	    <div class="col-sm-4">
+	      <a href="/timer"><img src="/static/timer.jpg" class="link-img" style="width:100%" alt="Timer">
+	      <a href="/timer" class="caption">Timer</a>
+	    </div>
+	    <div class="col-sm-4"> 
+	      <a href="/scorer"><img src="/static/scorer.jpg" class="link-img" style="width:100%" alt="Scorer">
+	      <a href="/scorer" class="caption">Scorer</a>    
+	    </div>
+		<div class="col-sm-4"> 
+	      <a href="/links"><img src="/static/links.jpg" class="link-img" style="width:100%" alt="Links">
+	      <a href="/links" class="caption">Links</a>    
+	    </div>
+	  </div>
+	</div>
+
+{% endblock content %}

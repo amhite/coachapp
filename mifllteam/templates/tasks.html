@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<body>
+
+	<div class="border-bottom nb-4">
+
+		<h2>Meeting Tasks</h2><br>
+
+		<!-- Dropdown menu -->
+		<form>
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+			    <label class="input-group-text" for="inputGroupSelect01">Meeting number:</label>
+			  </div>
+			  <select class="custom-select" id="selectInput" onchange="getval()">
+			    <option selected>Choose...</option>
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			  </select>
+			</div>
+			<div id="withVar"></div>
+		</form>
+		
+	</div>
+
+	<script type="text/javascript">
+		function getval() {
+			// Get values
+			selectedMeeting=document.getElementById("selectInput").value;
+			numberOfMeetings = '{{numMtgs}}';
+			numberOfEntries = '{{numRows}}';
+
+			// Do math and get specific tasks
+			tasksPerMtg = Math.floor(numberOfMeetings / numberOfEntries);
+			minThisMtg = tasksPerMtg * (selectedMeeting - 1)
+			maxThisMtg = minThisMtg + tasksPerMtg
+
+			// Display tasks
+			document.getElementById("withVar").innerHTML = "Selected meeting: " + selectedMeeting + "   Number of meetings: " +numberOfMeetings + "   Number of tasks total: " + numberOfEntries + "MinTask: " + minThisMtg + "MaxTask:" + maxThisMtg;
+		}
+	</script>
+
+	<!-- Display day's Core Values tasks -->
+	{% for task in tasks %}
+		<article class="media content-section">
+			<div class="media-body">
+				<div class="article-metadata">
+				<p class="mr-2">{{ task.category }}</p>
+				</div>
+				<h2><a class="article-title" }}">{{ task.title }}</a></h2>
+				<p class="article-content">{{ task.content }}</p>
+			</div>
+		</article>
+	{% endfor %}
+</body>
+{% endblock content %}
